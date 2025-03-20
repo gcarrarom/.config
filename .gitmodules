@@ -8,7 +8,7 @@
 	path = nushell/modules/nuguish
 	url = https://github.com/gcarrarom/nuguish.git
 [submodule "nushell/scripts/NuAliasTips"]
-	path = nushell/scripts/NuAliasTips
+	path = nushell/scripts/nualiastips
 	url = https://github.com/fancy-whale/NuAliasTips.git
 [submodule "nushell/scripts/nuenv"]
 	path = nushell/scripts/nuenv
