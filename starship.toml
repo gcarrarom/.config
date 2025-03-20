@@ -1,0 +1,38 @@
+format = """$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+${custom.azsub}\
+${custom.jiractl}\
+$jobs
+$shell\
+$character"""
+
+# right_format = """$time"""
+
+[character]
+success_symbol = "[⌁](bold green)"
+error_symbol = "[⌁](bold red)"
+
+[kubernetes]
+format = 'at [☸️ $context \($namespace\)](bold blue) '
+disabled = false
+
+[time]
+disabled = false
+format = '[$time]($style) '
+time_format = "%T"
+
+[cmd_duration]
+show_notifications = true
+
+[nodejs]
+disabled = true
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+home_symbol = "🏠"
+
+[shell]
+disabled = false

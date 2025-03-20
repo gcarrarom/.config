@@ -1,0 +1,7 @@
+" Ignore duckduckgo's navigation
+autocmd DocStart duckduckgo.com mode ignore
+autocmd DocStart kagi.com mode ignore
+autocmd DocStart frss.fancywhale.ca mode ignore
+
+" Better scroll:
+set smoothscroll true
