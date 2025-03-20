@@ -25,3 +25,4 @@ tmux/plugins
 .stfolder
 .DS_Store
 *sync-conflict*
+karabiner/automatic_backups
