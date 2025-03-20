@@ -1,6 +1,6 @@
 [submodule "nvim"]
 	path = nvim
-	url = https://github.com/gcarrarom/nvim
+	url = https://github.com/gcarrarom/guivim.git
 [submodule "nushell/modules/fancynuman"]
 	path = nushell/modules/fancynuman
 	url = https://github.com/fancy-whale/fancynuman.git
