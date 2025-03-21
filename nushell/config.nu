@@ -1060,7 +1060,7 @@ if not (echo "~/.cache/starship/init.nu" | path exists) {
 
 path add /Users/fancygui/.local/bin
 
-path add /opt/nvim-linux-arm64/bin/
+path add /opt/nvim-linux-amd64/bin/
 path add /usr/local/go/bin/
 
 $env.EDITOR = "nvim"
