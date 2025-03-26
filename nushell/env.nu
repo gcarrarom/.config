@@ -114,3 +114,9 @@ starship init nu | save -f ~/.cache/starship/init.nu
 
 mkdir ~/.cache/completion
 kubectl completion fish | save -f ~/.cache/completion/kubectl.fish
+
+# Ensuring $SHELL is set to nu's path
+$env.SHELL = (which nu | get path | to text)
+
+$env.LC_ALL = 'en_IN.UTF-8'
+$env.LANG =  'en_IN.UTF-8'

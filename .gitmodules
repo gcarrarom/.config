@@ -1,18 +1,21 @@
 [submodule "nvim"]
 	path = nvim
-	url = https://github.com/gcarrarom/guivim.git
+	url = ssh://git@github.com:gcarrarom/guivim.git
 [submodule "nushell/modules/fancynuman"]
 	path = nushell/modules/fancynuman
-	url = https://github.com/fancy-whale/fancynuman.git
+	url = ssh://git@github.com:fancy-whale/fancynuman.git
 [submodule "nushell/modules/nuguish"]
 	path = nushell/modules/nuguish
-	url = https://github.com/gcarrarom/nuguish.git
+	url = ssh://git@github.com:gcarrarom/nuguish.git
 [submodule "nushell/scripts/NuAliasTips"]
 	path = nushell/scripts/nualiastips
-	url = https://github.com/fancy-whale/NuAliasTips.git
+	url = ssh://git@github.com:fancy-whale/NuAliasTips.git
 [submodule "nushell/scripts/nuenv"]
 	path = nushell/scripts/nuenv
-	url = https://github.com/fancy-whale/nuenv.git
+	url = ssh://git@github.com:fancy-whale/nuenv.git
 [submodule "nushell/scripts/nupdater"]
 	path = nushell/scripts/nupdater
-	url = https://github.com/fancy-whale/nupdater.git
+	url = ssh://git@github.com:fancy-whale/nupdater.git
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git

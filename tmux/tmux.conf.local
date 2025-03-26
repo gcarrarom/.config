@@ -453,9 +453,14 @@ set -g @plugin "nordtheme/tmux"
 
 # vi mode
 set-window-option -g mode-keys vi
+# Set the default shell as the default shell in tmux
+set-option -g default-shell $SHELL
 # mouse mode as default
 set-option -g mouse on
-
+setenv 'LC_ALL' 'en_IN.UTF-8'
+setenv 'LANG' 'en_IN.UTF-8'
+set -g status-left "#[fg=black,bg=blue,bold] #S #[fg=blue,bg=green,nobold,noitalics,nounderscore]#[fg=black, bg=green,bold]⎈#(kubectl config current-context)#[fg=green,bg=black,nobold,noitalics,nounderscore]#(~/.config/tmux/k8sstatus.nu)"
+set -g status-right "#{prefix_highlight}#[fg=brightblack,bg=black,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] ${NORD_TMUX_STATUS_DATE_FORMAT} #[fg=white,bg=brightblack,nobold,noitalics,nounderscore]#[fg=green,bg=brightblack,nobold,noitalics,nounderscore]#[fg=black,bg=green,bold]#(~/.config/tmux/uptime.nu)#[fg=cyan,bg=green,nobold,noitalics,nounderscore]#[fg=black,bg=cyan,bold] #H "
 
 # -- custom variables ----------------------------------------------------------
 
