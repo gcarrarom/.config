@@ -1,7 +1,5 @@
 # Default Nushell Environment Config File
 # These "sensible defaults" are set before the user's `env.nu` is loaded
-#
-# version = "0.101.1"
 
 $env.PROMPT_COMMAND = $env.PROMPT_COMMAND? | default {||
     let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
@@ -100,6 +98,9 @@ if (which brew | length) == 1 {
   path add (brew --prefix | path parse | path join "bin")
 }
 
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
 
 
 path add "/usr/local/bin"

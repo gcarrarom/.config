@@ -214,7 +214,7 @@ $env.config = {
     }
 
     filesize: {
-        unit: metric 
+        unit: metric
     }
 
     cursor_shape: {
@@ -364,7 +364,7 @@ $env.config = {
             only_buffer_difference: true
             marker: "? "
             type: {
-                layout: description
+                layout: list
                 columns: 4
                 col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
                 col_padding: 2
@@ -904,7 +904,12 @@ let fish_completer = {|spans|
 }
 
 let zoxide_completer = {|spans|
+  try {
     ls | where type == 'dir' | get name | to text | fzf --filter $spans.1 | lines | append (zoxide query -l | fzf --filter $spans.1 | lines ) | each {|ea| $"'($ea)'"}
+  } catch {|err|
+    echo $err | save -f /Users/fancygui/errors
+  }
+
 }
 
 let kubectl_completer = {|spans|
@@ -968,32 +973,23 @@ let external_completer = {|spans|
     } | do $in $spans
 }
 
-$env.config.keybindings = ($env.config.keybindings | append {
-    name: fuzzy_history
-    modifier: control
-    keycode: char_r
-    mode: [emacs, vi_normal, vi_insert]
-    event: [
-        {
-        send: ExecuteHostCommand
-        cmd: "do {
-            $env.SHELL = commandline edit --replace (
-            history
-            | get command
-            | reverse
-            | uniq
-            | str join (char -i 0)
-            | fzf --scheme=history
-                --read0
-                --layout=reverse
-                -q (commandline)
-            | decode utf-8
-            | str trim
-            )
-        }"
+$env.ATUIN_NOBIND = true
+atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
+source ~/.local/share/atuin/init.nu
+
+#bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too
+$env.config = (
+    $env.config | upsert keybindings (
+        $env.config.keybindings
+        | append {
+            name: atuin
+            modifier: control
+            keycode: char_r
+            mode: [emacs, vi_normal, vi_insert]
+            event: { send: executehostcommand cmd: (_atuin_search_cmd) }
         }
-    ]
-})
+    )
+)
 
 # $env.config.keybindings = ($env.config.keybindings | append {
 #     name: fzf_completion
@@ -1043,10 +1039,10 @@ if (which brew | length) == 1 {
     $env.FPATH = "$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 }
 
-$env.config.completions.external = {
-    enable: true
-    completer: $external_completer
-}
+# $env.config.completions.external = {
+#     enable: true
+#     completer: $external_completer
+# }
 
 if not (echo "~/.cache/zoxide/init.nu" | path exists) {
   echo "Initializing Zoxide cache"
@@ -1070,6 +1066,7 @@ $env.VISUAL = "nvim"
 source nuenv/nuenv.nu
 source nualiastips/nualiastips.nu
 #source nupdater/nupdater.nu
+# use abak *
 use kubernetes *
 use argx
 use docker *
@@ -1082,3 +1079,5 @@ use fancynuman *
 source ~/.cache/zoxide/init.nu
 use ~/.cache/starship/init.nu
 export alias cd = z
+
+source ~/.cache/carapace/init.nu
